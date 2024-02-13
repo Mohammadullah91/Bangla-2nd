@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>High-Speed OTP Request Form</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <form id="otpForm">
+        <label for="targetNumber">Target Number:</label>
+        <input type="text" id="targetNumber" name="targetNumber" required>
+
+        <label for="amount">Amount:</label>
+        <input type="number" id="amount" name="amount" required>
+
+        <button type="button" onclick="sendOTPRequests()">Send OTP Requests</button>
+
+        <div id="log"></div>
+    </form>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
