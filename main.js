@@ -33,7 +33,7 @@ $('#submit').click(()=>{
               });
               var config = {
                 method: 'post',
-                url: 'http://vstg-gateway-prod-1532961163.ap-south-1.elb.amazonaws.com/notification/api/v1/send/otp/v3',
+                url: 'https://api.englishmojabd.com/api/v1/auth/login',
                 headers: { 
                   'Content-Type': 'application/json'
                 },
@@ -43,7 +43,7 @@ $('#submit').click(()=>{
               i++;
 
               var data = JSON.stringify({
-                "username": "+88"+number+""
+                "phone": "+88"+number+""
               });
               var config = {
                 method: 'post',
